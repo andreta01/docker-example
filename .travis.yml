@@ -9,3 +9,15 @@ before_install:
 
 script:
   - docker run -e CI=true docker-example npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-example-andreta"
+  env: "DockerExampleAndreta-env"
+  bucket_name: "elasticbeanstalk-us-east-2-428441761464"
+  bucket_path: "docker-example-andreta"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
